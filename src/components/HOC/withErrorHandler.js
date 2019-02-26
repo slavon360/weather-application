@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import _get from 'lodash/get';
 import store from '../../store';
 import { setLoading } from '../../actions/appState';
 import Modal from '../../components/UI/Modal/Modal';
@@ -15,8 +16,10 @@ const withErrorHandler = (WrappedComponent, axios) => {
       })
       this.resInterceptor = axios.interceptors.response.use(res => res, error => {
         store.dispatch(setLoading(false));
+        const status = _get(error, 'response.status', null);
+        error.message = status === 404 ? 'No such city in our database. Maybe you misspelled it. Please check or try another word.'
+        : error.message;
         this.setState({error:error});
-        console.log(error);
       })
     }
     componentWillUnmount () {
@@ -27,13 +30,14 @@ const withErrorHandler = (WrappedComponent, axios) => {
       this.setState({error:null})
     }
     render(){
+      const { error } = this.state;
       return(
         <Fragment>
           <Modal
-            show={this.state.error}
+            show={error}
             modalClosed={this.errorConfirmedHandler}>
-            {this.state.error ? this.state.error.message : null}
-            &nbsp;Something didn`t work
+            {error ? error.message : null}
+            &nbsp;(Something didn`t work)
           </Modal>
           <WrappedComponent {...this.props} />
         </Fragment>

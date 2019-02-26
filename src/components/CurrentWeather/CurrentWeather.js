@@ -10,7 +10,7 @@ const CurrentWeather = ({
             <div className={styles.Container}>
                 <div><span>City: </span>{city || name}</div>
                 <div>{description}</div>
-                <div><img src={`${paths.weatherAssets}${icon}.png`} /></div>
+                <div><img alt={description} src={`${paths.weatherAssets}${icon}.png`} /></div>
                 <div><span>Temp: </span>{temp} °C</div>
                 <div><span>Humidity: </span>{humidity} %</div>
             </div>

@@ -1,4 +1,5 @@
 import { createTypes } from 'redux-compose-reducer';
+import _get from 'lodash/get';
 import axios from 'axios';
 import paths from '../constants/paths';
 
@@ -17,8 +18,9 @@ export const APP_TYPES = createTypes('appState', [
 export const getWeather = (city) => async (dispatch) => {
     dispatch({ type: APP_TYPES.setLoading, loading: true });
     const json = await axios.get(`${paths.weatherAPI}?q=${city}&units=metric&APPID=8d9223b647133c51d397626dcaa319ce`);
-    if (json.data.cod === 200) {
-        const { main, weather, name } = json.data;
+    const data = _get(json, 'data', {});
+    if (data.cod === 200) {
+        const { main, weather, name } = data;
         const weatherInfo = {
             temp: main.temp,
             humidity: main.humidity,
@@ -29,5 +31,8 @@ export const getWeather = (city) => async (dispatch) => {
         dispatch({ type: WEATHER_TYPES.weatherSuccess, weatherInfo });
         dispatch({ type: CITIES_TYPES.setActiveCity, cityName: city });
         dispatch({ type: APP_TYPES.setLoading, loading: false });
+    }
+    if (data.cod === 404) {
+        console.log(data)
     }
 }
