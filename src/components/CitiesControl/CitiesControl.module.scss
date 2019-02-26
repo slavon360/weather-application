@@ -1,0 +1,28 @@
+.CitiesControl {
+    display: flex;
+    .LeftSide {
+        flex-grow: 3;
+        position: relative;
+    }
+    .RightSide {
+        flex-grow: 1;
+        margin-left: 25px;
+    }
+}
+.SearchButton {
+    width: 100%;
+    height: 48px;
+    font-size: 22px;
+    background-color: #bbb;
+    color: #fff;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+.CitiesInput {
+    border-bottom: 2px solid #eee;
+    .InputCity {
+        width: 100%;
+        padding: 15px 20px;
+        box-sizing: border-box;
+    }
+}
