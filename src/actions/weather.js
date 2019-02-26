@@ -32,7 +32,4 @@ export const getWeather = (city) => async (dispatch) => {
         dispatch({ type: CITIES_TYPES.setActiveCity, cityName: city });
         dispatch({ type: APP_TYPES.setLoading, loading: false });
     }
-    if (data.cod === 404) {
-        console.log(data)
-    }
 }
