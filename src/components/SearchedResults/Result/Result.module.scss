@@ -1,0 +1,16 @@
+.Result {
+    cursor: pointer;
+    padding: 10px 10px 15px;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border-bottom: 1px solid #eee;
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+    &:hover {
+        color: #ff115f;
+    }
+    &:nth-of-type(odd) {
+        background-color: #ddd;
+    }
+}
