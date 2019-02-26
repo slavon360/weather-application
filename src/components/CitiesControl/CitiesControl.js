@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import Input from '../UI/Input/Input';
 import { LayerContext } from '../Layer/Layer';
 import Button from '../UI/Button/Button';
+import SearchedResults from '../SearchedResults/SearchedResults';
 
 import styles from './CitiesControl.module.scss';
 
@@ -44,7 +45,17 @@ class CitiesControl extends PureComponent {
                                     placeholder="Start typing..."
                                     value={this.state.city}
                                 />
-                            </div>                            
+                            </div>
+                            <SearchedResults
+                                noResults={noResults}
+                                results={citiesList}
+                                activeCity={activeCity}
+                                getWeather={this.onGetWeather}
+                                showCitiesList={showCitiesList}
+                            /> 
+                            {!citiesList.length && noResults &&
+                                 <div className={styles.Empty}>empty...</div>
+                            }
                         </div>
                         <div className={styles.RightSide}>
                             <Button

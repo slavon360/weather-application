@@ -1,0 +1,12 @@
+.SearchedResults {
+    position: absolute;
+    top: 100%;
+    border: 1px solid #e6e6e6;
+    background-color: #fff;
+    box-sizing: border-box;
+    width: 100%;
+    display: none;
+}
+.SearchedResults.Shown {
+    display: block;
+}
