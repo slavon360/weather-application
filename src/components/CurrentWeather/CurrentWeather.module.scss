@@ -1,0 +1,12 @@
+.CurrentWeather {
+    font-size: 22px;
+    text-align: center;
+    margin-top: 25px;
+
+    @media only screen and (min-width: 768px) {
+        margin-top: 285px;
+    }
+}
+.Container {
+    display: inline-block;
+}
