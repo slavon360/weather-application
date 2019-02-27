@@ -20,6 +20,7 @@ const withErrorHandler = (WrappedComponent, axios) => {
         error.message = status === 404 ? 'No such city in our database. Maybe you misspelled it. Please check or try another word.'
         : error.message;
         this.setState({error:error});
+        return error;
       })
     }
     componentWillUnmount () {
